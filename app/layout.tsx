@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 
 import ClientOnly from './components/ClientOnly'
 import Navbar from './components/navbar/Navbar'
-import Modal from './components/modals/modal'
+import RegisterModal from './components/modals/RegisterModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClientOnly>
           {/* isOpen={true} */}
-          <Modal actionLabel="Submit" title="Hello" isOpen />
+          <RegisterModal />
           <Navbar />
         </ClientOnly>
         {children}
