@@ -5,9 +5,11 @@ import { Inter } from 'next/font/google'
 import ClientOnly from './components/ClientOnly'
 import Navbar from './components/navbar/Navbar'
 import ToasterProvider from './providers/ToasterProvider'
+import getCurrentUser from './actions/getCurrentUser'
+
 import RegisterModal from './components/modals/RegisterModal'
 import LoginModal from './components/modals/LoginModal'
-import getCurrentUser from './actions/getCurrentUser'
+import RentModal from './components/modals/RentModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +25,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={inter.className}>
         <ClientOnly>
           <ToasterProvider />
-          {/* isOpen={true} */}
+          <RentModal />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser}/>
