@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import useRentModal from '@/app/hooks/useRentModal';
 
@@ -13,6 +13,7 @@ import CountrySelect from '../inputs/CountrySelect';
 import Counter from '../inputs/Counter';
 import ImageUpload from '../ImageUpload';
 import dynamic from 'next/dynamic';
+import Input from '../inputs/Input';
 
 enum STEPS {
   CATEGORY = 0,
@@ -27,6 +28,7 @@ const RentModal = () => {
   const rentModal = useRentModal()
 
   const [step, setStep] = useState(STEPS.CATEGORY)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
@@ -171,6 +173,56 @@ const RentModal = () => {
           value={imageSrc}
           onChange={(value) => setCustomValue('imageSrc', value)}
         />
+      </div>
+    )
+  }
+
+  if(step === STEPS.DESCRIPTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading 
+          title="Como você descreve o seu espaço?"
+          subtitle="Descrições curtas funcionam melhor!"
+        />
+        <Input 
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input 
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    )
+  }
+
+  if(step === STEPS.PRICE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading 
+          title="Agora, defina seu preço"
+          subtitle="Quanto você cobra por uma noite?"
+        />
+        <Input 
+          id="price"
+          label="Price"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+
       </div>
     )
   }
