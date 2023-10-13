@@ -6,10 +6,10 @@ import { Listing, Reservation } from "@prisma/client"
 import { format } from 'date-fns' 
 import Image from 'next/image'
 
-import useCountries from "../hooks/useCountries"
-import { SafeListing, SafeUser } from "../types"
-import HeartButton from "./HeartButton"
-import Button from "./Button"
+import useCountries from "../../hooks/useCountries"
+import { SafeListing, SafeUser } from "../../types"
+import HeartButton from "../HeartButton"
+import Button from "../Button"
 
 interface ListingCardProps {
   data: SafeListing
