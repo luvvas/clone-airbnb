@@ -7,12 +7,12 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 
 import useCountries from "../hooks/useCountries"
-import { SafeUser } from "../types"
+import { SafeListing, SafeUser } from "../types"
 import HeartButton from "./HeartButton"
 import Button from "./Button"
 
 interface ListingCardProps {
-  data: Listing
+  data: SafeListing
   reservation?: Reservation 
   onAction?: (id: string) => void
   disabled?: boolean
